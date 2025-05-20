@@ -26,3 +26,6 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t usuario/mi-imagen-nginx .
+
+      - name: Run container and show entrypoint output
+        run: docker run usuario/mi-imagen-nginx "Diego"
