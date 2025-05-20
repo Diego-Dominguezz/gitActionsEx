@@ -1,5 +1,4 @@
 #!/bin/bash
-
 say_hello() {
-  echo "hi, $1!"
+  echo "Hello, $1!"
 }
