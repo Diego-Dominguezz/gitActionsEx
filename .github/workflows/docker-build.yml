@@ -27,5 +27,16 @@ jobs:
       - name: Build Docker image
         run: docker build -t usuario/mi-imagen-nginx .
 
-      - name: Run container and show entrypoint output
-        run: docker run usuario/mi-imagen-nginx "Diego"
+      - name: Run container
+        run: |
+          docker run --name contenedor-prueba -d usuario/mi-imagen-nginx "Diego"
+          sleep 2
+
+      - name: Show container logs
+        run: docker logs contenedor-prueba
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f contenedor-prueba || true
+          docker rmi usuario/mi-imagen-nginx || true
