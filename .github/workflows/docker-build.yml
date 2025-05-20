@@ -11,9 +11,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Install BATS
         run: sudo apt-get update && sudo apt-get install -y bats
-      - name: run tests
+
+      - name: Run tests
         run: bats test/test_script.bats
+
+      - name: Make metrics_summary.sh executable
+        run: chmod +x test/metrics_summary.sh
+
+      - name: Show test metrics summary
+        run: bash test/metrics_summary.sh
+
       - name: Build Docker image
         run: docker build -t usuario/mi-imagen-nginx .
