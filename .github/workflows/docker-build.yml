@@ -11,5 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install BATS
+        run: sudo apt-get update && sudo apt-get install -y bats
+      - name: run tests
+        run: bats test_script.bats
       - name: Build Docker image
         run: docker build -t usuario/mi-imagen-nginx .
